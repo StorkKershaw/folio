@@ -1,0 +1,46 @@
+<main>
+  <nav class="navbar bg-primary navbar-expand" data-bs-theme="dark">
+    <div class="container">
+      <span class="ms-2 navbar-brand">Folio</span>
+      <span
+        class="me-3 border-start border-white"
+        style="width: 0px; height: 1.5rem"
+      ></span>
+      <span class="me-auto text-white">{{ title }}</span>
+    </div>
+  </nav>
+
+  <div
+    class="mx-auto p-1 pb-5 d-flex flex-column gap-1"
+    style="max-width: 700px"
+  >
+    <div
+      class="d-grid"
+      style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))"
+    >
+      {% for anchor in folders %}
+      <a
+        role="button"
+        class="d-flex justify-content-center align-items-center rounded-3 btn btn-outline-primary fs-1"
+        style="overflow-wrap: anywhere; aspect-ratio: 1 / 1"
+        href="{{ anchor.href }}"
+        hx-get="{{ anchor.href }}"
+        hx-target="main"
+        hx-swap="outerHTML"
+        hx-push-url="true"
+      >
+        {{ anchor.title }}
+      </a>
+      {% endfor %}
+    </div>
+    {% for anchor in files %}
+    <a href="{{ anchor.href }}" target="_blank">
+      <img
+        src="{{ anchor.href }}"
+        title="{{ anchor.title }}"
+        class="border w-100"
+      />
+    </a>
+    {% endfor %}
+  </div>
+</main>
