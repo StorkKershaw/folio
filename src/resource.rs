@@ -1,15 +1,14 @@
-use std::{fs::DirEntry, io, path::Path};
-
 use actix_files::Directory;
 use image::ImageReader;
+use std::{fs::DirEntry, io, path::Path};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
-pub(crate) struct Anchor {
+pub(crate) struct Resource {
     pub(crate) title: String,
     pub(crate) href: String,
 }
 
-impl Anchor {
+impl Resource {
     pub(crate) fn parent(base_url: &Path) -> Option<Self> {
         Some(Self {
             title: "..".to_owned(),
